@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gini Coefficient and Lorenz Curve Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+        #results {
+            display: none;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gini Coefficient and Lorenz Curve Calculator</h1>
+        <form id="incomeForm">
+            <label for="incomeInput">Enter incomes separated by commas:</label>
+            <input type="text" id="incomeInput" required>
+            <button type="submit">Calculate</button>
+        </form>
+        <div id="results">
+            <h2>Results:</h2>
+            <p>Gini Coefficient: <span id="giniCoefficient"></span></p>
+            <canvas id="lorenzCurve"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
