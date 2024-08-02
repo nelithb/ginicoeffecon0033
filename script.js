@@ -1,3 +1,16 @@
+function storeInputAndOutput(inputs, gini) {
+    fetch('http://localhost:3000/api/store-input', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ inputs, gini }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => console.error('Error:', error));
+  }
+
 let chart = null;
 
 function calculateGiniAndLorenz(incomes) {
@@ -123,6 +136,9 @@ document.getElementById('incomeForm').addEventListener('submit', function(e) {
 
     let { gini, lorenzData } = calculateGiniAndLorenz(incomes);
     createOrUpdateLorenzCurve(lorenzData, gini);
+    
+    // Add this line to store the input and output
+    storeInputAndOutput(incomes, gini);
     
     document.getElementById('results').style.display = 'block';
     document.querySelector('.container').style.height = 'auto';
