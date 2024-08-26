@@ -1,5 +1,5 @@
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '../.env') });
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -11,8 +11,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
+require('dotenv').config();
+console.log('MongoDB URI:', process.env.MONGODB_URI.replace(/:[^:]*@/, ':****@'));
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Could not connect to MongoDB:', err.message));
 const InputSchema = new mongoose.Schema({
   inputs: [Number],
   gini: Number,
